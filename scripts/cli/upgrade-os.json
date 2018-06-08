@@ -1,5 +1,0 @@
-{
-	"skipDos2Unix": true,
-	"fileUris": ["https://gist.githubusercontent.com/Bruce-IPL/1889d4e3f6549da6b324f9f566e66bfd/raw/69aacb8339499d61a4346c2196b69f56dfbbfb64/upgrade-os.sh"],
-	"commandToExecute": "./upgrade-os.sh"
-}
