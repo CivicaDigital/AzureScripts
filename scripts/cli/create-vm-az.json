@@ -1,0 +1,8 @@
+{
+	"fileUris": 
+		[
+		 "https://raw.githubusercontent.com/CivicaDigital/AzureScripts/master/scripts/extensions/upgrade-os.sh",
+		 "https://raw.githubusercontent.com/CivicaDigital/AzureScripts/master/scripts/extensions/setup-azure-cli.sh"
+		],
+	"commandToExecute": "./upgrade-os.sh && ./setup-azure-cli.sh"
+}
