@@ -1,7 +1,7 @@
 export project_name="Dummy"
 export region="UKWest"
 export resourceGroup="${project_name}ResourceGroup"
-cre
+#
 # echo Creating machineName "${USER}-$1" 
 # echo in resourceGroup "${resourceGroup}"
 # echo With password "$2"
