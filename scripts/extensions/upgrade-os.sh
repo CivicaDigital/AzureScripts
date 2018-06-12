@@ -1,8 +1,7 @@
 #!/bin/sh
 
-#
 # Apt-get options: https://linux.die.net/man/8/apt-get
-#
+
 echo $(date) "Updating packages ..." >> /tmp/cloud-init.txt
 echo "Updating packages ..."
 apt update

@@ -1,4 +1,5 @@
 #!/bin/sh
+
 echo $(date) ":Initialised from Azure Cloud CLI" >> /tmp/cloud-init.txt
 
 # Azure CLI - https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-apt?view=azure-cli-latest
@@ -15,4 +16,3 @@ echo $(date) ":Microsoft signing key" >> /tmp/cloud-init.txt
 sudo apt-get install apt-transport-https
 sudo apt-get update && sudo apt-get install azure-cli
 echo $(date) ":Azure CLI installed" >> /tmp/cloud-init.txt
-
