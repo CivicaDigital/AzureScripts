@@ -1,5 +1,6 @@
 #!/bin/bash
-if [ ! -z "$resourceGroup" ]; then exit ; fi
+if [ -z "$resourceGroup" ]
+then
 
 echo Setting Variables
 
@@ -10,3 +11,7 @@ export project_name="$1"
 export region="UKWest"
 export resourceGroup="${project_name}ResourceGroup"
 echo Working in resourceGroup ${resourceGroup} in region ${region}.
+
+
+fi
+
