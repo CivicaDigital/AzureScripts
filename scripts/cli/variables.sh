@@ -4,7 +4,7 @@ then
 
 echo Setting Variables
 
-if [ ! -n "$1" ]; then echo "\$1 is empty needed for 'project_name'"; exit ; fi
+if [ -z "$1" ]; then echo "\$1 is empty needed for 'project_name'"; exit ; fi
 
 # Variables for All scripts, copy and paste into the command line.
 export project_name="$1"
