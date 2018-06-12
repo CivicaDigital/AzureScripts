@@ -1,9 +1,8 @@
 #!/bin/bash
 source variables.sh $1
+if [ -z "$2" ]; then echo "\$2 is empty needed for 'machineName'"; exit ; fi
 
 source create-resource-group.sh
-
-if [ -z "$1" ]; then echo "\$1 is empty needed for 'project_name'"; exit ; fi
 
 echo Creating machineName ${USER}-$2 
 echo in resourceGroup ${resourceGroup}
