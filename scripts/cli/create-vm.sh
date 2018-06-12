@@ -12,12 +12,12 @@ echo With password $3
 
 echo
 echo Wait until provisioned ...
-az vm create --verbose --resource-group $resourceGroup --name ${USER}-$2 --image UbuntuLTS --admin-username $USER --admin-password $3 --size Standard_D2_v2 
+az vm create --verbose --resource-group $resourceGroup --name ${USER}-$2 --image UbuntuLTS --admin-username $USER --admin-password $3 --size Standard_D2_v2 --set tags.restart-tag=true
 
 source wait-for-vm.sh
 
 echo
-echo Run extensions to set up VM ${USER}-$2
-az vm extension set --resource-group $resourceGroup --vm-name ${USER}-$2 --name CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --protected-settings ./create-vm-simple.json
+echo Run extensions $vm_init_settings to set up VM ${USER}-$2
+az vm extension set --resource-group $resourceGroup --vm-name ${USER}-$2 --name CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --protected-settings $vm_init_settings
 
 echo ${USER}-$2 stated and set up.
