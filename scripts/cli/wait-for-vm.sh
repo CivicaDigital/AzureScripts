@@ -3,7 +3,7 @@
 if [ -z "$resourceGroup" ]; then echo "\$resourceGroup is empty"; exit ; fi
 
 # Wait for the VMs to be provisioned
-while [[ $(az vm list --resource-group $resourceGroup --query "length([?provisioningState=='Succeeded'])") != 3 ]]; do
+while [[ $(az vm list --resource-group $resourceGroup --query "length([?provisioningState=='Creating'])") != 0 ]]; do
     echo "The VMs are still not provisioned. Trying again in 20 seconds."
     sleep 20
     if [[ $(az vm list --resource-group $resourceGroup --query "length([?provisioningState=='Failed'])") != 0 ]]; then

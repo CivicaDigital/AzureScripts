@@ -7,7 +7,9 @@ source create-resource-group.sh
 
 echo Creating machineName ${USER}-$2 
 echo in resourceGroup ${resourceGroup}
-echo With password $2
+echo With password $3
+
+echo Wait until provisioned ...
 az vm create --verbose --resource-group $resourceGroup --name ${USER}-$2 --image UbuntuLTS --admin-username $USER --admin-password $3 --size Standard_D2_v2 
 
 source wait-for-vm.sh
