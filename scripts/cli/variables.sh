@@ -1,4 +1,6 @@
 #!/bin/bash
+if [ ! -z "$resourceGroup" ]; then exit ; fi
+
 echo Setting Variables
 
 if [ -z "$1" ]; then echo "\$1 is empty needed for 'project_name'"; exit ; fi
