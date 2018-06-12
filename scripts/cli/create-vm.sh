@@ -12,7 +12,7 @@ echo With password $3
 
 echo
 echo Wait until provisioned ...
-az vm create --verbose --no-wait --resource-group $resourceGroup --name ${USER}-$2 --image UbuntuLTS --admin-username $USER --admin-password $3 --size Standard_D2_v2 --tags "restart-tag" 
+az vm create --verbose --resource-group $resourceGroup --name ${USER}-$2 --image UbuntuLTS --admin-username $USER --admin-password $3 --size Standard_D2_v2 --tags "restart-tag" 
 
 source wait-for-vm.sh
 
