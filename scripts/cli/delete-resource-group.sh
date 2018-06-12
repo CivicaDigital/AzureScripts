@@ -1,5 +1,5 @@
 #!/bin/bash
 source variables.sh
 
-# Delete the resource group
+echo Deleting the resource group
 az group delete --name $resourceGroup
