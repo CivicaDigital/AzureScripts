@@ -2,7 +2,7 @@
 source variables.sh $1
 if [ -z "$2" ]; then echo "\$2 is empty needed for 'machineName'"; exit ; fi
 if [ -z "$3" ]; then echo "\$3 is empty needed for 'admin-password'"; exit ; fi
-if [ -z "$4" ]; then export vm_init_settings="./create-vm-simple.json" ; else export vm_init_settings=$4 ;  fi
+if [ -z "$4" ]; then export vm_init_settings="./create-vm-simple.json" ; else export vm_init_settings="./${4}.json" ;  fi
 
 source create-resource-group.sh
 
