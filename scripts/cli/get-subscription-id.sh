@@ -1,8 +1,4 @@
 #!/bin/bash
-source jsonval.sh
 
-json='az account list'
-prop='id'
-subId=`jsonval`
-
+subId=$(az account list | jq '.[].id' | sed 's/[\"]//g')
 echo $subId
