@@ -11,7 +11,7 @@ export project_name="$1"
 export region="UKWest"
 export resourceGroup="${project_name}ResourceGroup"
 export subscriptionId=$(az account list | jq '.[].id' | sed 's/[\"]//g')
-echo Working in resourceGroup ${resourceGroup} in region ${region} and ${subscriptionId}.
+echo Working in resourceGroup ${resourceGroup} in region ${region} and subscriptionId ${subscriptionId}.
 
 
 fi
