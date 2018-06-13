@@ -6,18 +6,26 @@ if [ -z "$4" ]; then export vm_init_settings="./create-vm-simple.json" ; else ex
 
 source create-resource-group.sh
 
-echo Creating machineName ${USER}-$2 
+export vm_name=${USER}-$2
+echo Creating machineName ${vm_name} 
 echo in resourceGroup ${resourceGroup}
 echo With password $3
 
 echo
 echo Wait until provisioned ...
-az vm create --verbose --resource-group $resourceGroup --name ${USER}-$2 --image UbuntuLTS --admin-username $USER --admin-password $3 --size Standard_D2_v2 --tags "restart-tag" 
+az vm create --verbose --resource-group $resourceGroup --name ${vm_name} --image UbuntuLTS --admin-username $USER --admin-password $3 --size Standard_D2_v2 --tags "restart-tag" 
 
 source wait-for-vm.sh
+echo ${vm_name} started
+
+# Add shutdown using a devtestlabs ARM
+export script_name="shutdown-${vm_name}.json"
+sed 's/YOURVMNAME/${vm_name}/g' < ./shutdown-vm.template >  $script_name
+az group deployment create --name fooStop --resource-group fooResourceGroup --template-file $script_name
+echo ${vm_name} shutdown added
 
 echo
-echo Run extensions $vm_init_settings to set up VM ${USER}-$2
-az vm extension set --resource-group $resourceGroup --vm-name ${USER}-$2 --name CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --protected-settings $vm_init_settings
+echo Run extensions $vm_init_settings to set up VM ${vm_name}
+az vm extension set --resource-group $resourceGroup --vm-name ${vm_name} --name CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --protected-settings $vm_init_settings
 
-echo ${USER}-$2 stated and set up.
+echo ${vm_name} started and set up.

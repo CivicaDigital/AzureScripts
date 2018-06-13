@@ -7,11 +7,11 @@
             "type": "String"
         },
         "shutdown_time": {
-            "defaultValue": "1900",
+            "defaultValue": "1830",
             "type": "String"
         },
         "shutdown_timezone": {
-            "defaultValue": "W. Europe Standard Time",
+            "defaultValue": "UTC",
             "type": "String"
         }
     },
