@@ -1,5 +1,7 @@
 #!/bin/bash
-
+#
+# Could be "az vm wait -g MyResourceGroup -n MyVm --created" but something moe interactive was desired.
+#
 if [ -z "$resourceGroup" ]; then echo "\$resourceGroup is empty"; exit ; fi
 
 # Wait for the VMs to be provisioned
