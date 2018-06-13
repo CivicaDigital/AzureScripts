@@ -19,8 +19,9 @@ source wait-for-vm.sh
 echo ${vm_name} started
 
 # Add shutdown using a devtestlabs ARM
+echo ${vm_name} Adding shutdown...
 export script_name="shutdown-${vm_name}.json"
-sed 's/YOURVMNAME/${vm_name}/g' < ./shutdown-vm.template >  $script_name
+sed 's/YOURVMNAME/'${vm_name}'/g' < ./shutdown-vm.template >  $script_name
 az group deployment create --name fooStop --resource-group fooResourceGroup --template-file $script_name
 echo ${vm_name} shutdown added
 
