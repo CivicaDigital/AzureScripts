@@ -10,7 +10,8 @@ if [ -z "$1" ]; then echo "\$1 is empty needed for 'project_name'"; exit ; fi
 export project_name="$1"
 export region="UKWest"
 export resourceGroup="${project_name}ResourceGroup"
-echo Working in resourceGroup ${resourceGroup} in region ${region}.
+export subscriptionId=$(az account list | jq '.[].id' | sed 's/[\"]//g')
+echo Working in resourceGroup ${resourceGroup} in region ${region} and ${subscriptionId}.
 
 
 fi
