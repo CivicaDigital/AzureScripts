@@ -1,23 +1,39 @@
 #!/bin/sh
-echo $(date) ":Initialised from Azure Cloud CLI" >> /tmp/cloud-init.txt
 
-# DESKTOP
-# 1.  install xfce using apt
-sudo apt-get --assume-yes update
-echo $(date) ":OS Updated" >> /tmp/cloud-init.txt
+# Scripts from:
+# http://c-nergy.be/blog/?p=12198
 
-sudo apt-get --assume-yes install xfce4
-echo $(date) ":xfre4 installed" >> /tmp/cloud-init.txt
+echo $(date) ":DESKTOP Install" >> /tmp/cloud-init.txt
 
-# 2. Install and configure a remote desktop server
-# Now that you have a desktop environment installed, configure a remote desktop service to listen for incoming connections. xrdp is an open source Remote Desktop Protocol (RDP) server that is available on most Linux distributions, and works well with xfce.
-# Tell xrdp what desktop environment to use when you start your session. Configure xrdp to use xfce .
-
-echo $(date) ":Configure xrdp to use xfce" >> /tmp/cloud-init.txt
-
-# Restart the xrdp service for the changes to take effect.
+#---------------------------------------------------#
+# Step 1 - Install xRDP Software.... 
+#---------------------------------------------------#
+echo $(date) ":xrdp installing..." >> /tmp/cloud-init.txt
 sudo apt-get --assume-yes install xrdp
-echo xfce4-session >~/.xsession
-sudo service xrdp restart
+echo $(date) ":xrdp installed" >> /tmp/cloud-init.txt
 
-echo $(date) ":xrdp & xfce installed" >> /tmp/cloud-init.txt
+#---------------------------------------------------#
+# Step 2 - Install xfce4 Software.... 
+#---------------------------------------------------#
+echo $(date) ":xfce4 installing..." >> /tmp/cloud-init.txt
+sudo apt-get --assume-yes install xfce4
+echo $(date) ":xfce4 installed" >> /tmp/cloud-init.txt
+
+#---------------------------------------------------#
+# Step 3 - create policies exceptions .... 
+#---------------------------------------------------#
+echo $(date) ":Creating Polkit File..." >> /tmp/cloud-init.txt
+
+sudo bash -c "cat >/etc/polkit-1/localauthority/50-local.d/45-allow.colord.pkla" <<EOF
+[Allow Colord all Users]
+Identity=unix-user:*
+Action=org.freedesktop.color-manager.create-device;org.freedesktop.color-manager.create-profile;org.freedesktop.color-manager.delete-device;org.freedesktop.color-manager.delete-profile;org.freedesktop.color-manager.modify-device;org.freedesktop.color-manager.modify-profile
+ResultAny=no
+ResultInactive=no
+ResultActive=yes
+EOF
+
+echo $(date) ":Polkit file installed" >> /tmp/cloud-init.txt
+
+echo $(date) ":DESKTOP Installed" >> /tmp/cloud-init.txt
+

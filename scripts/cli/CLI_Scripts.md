@@ -52,6 +52,15 @@ To instantiate a VM with just the Azure CLI installed run the following command:
 This is the same as a standard VM but the **create-vm-az** parameter is essential.
 This means that the scripts located in the `create-vm-az.json` file will be executed on the VM as it is created.
 
+## Creating a Linux VM with a Desktop
+To instantiate a VM with just the Azure CLI installed run the following command:
+```
+./create-vm-desk.sh [project] [vm-name] [vm-password]
+```
+
+This is the same as a Linux VM with Azure CLi as the scripts located in the `create-vm-desktop.json` file are executed on the VM as it is created.
+This script will attach the new VM to `3389` for conneting to the machine via RDP.
+
 
 
 

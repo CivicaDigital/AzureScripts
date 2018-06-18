@@ -7,13 +7,15 @@ if [ -z "$4" ]; then export vm_init_settings="./create-vm-simple.json" ; else ex
 source create-resource-group.sh
 
 export vm_name=${USER}-$2
+export vm_image=UbuntuLTS
+
 echo Creating machineName ${vm_name} 
 echo in resourceGroup ${resourceGroup}
 echo With password $3
 
 echo
 echo Wait until provisioned ...
-az vm create --verbose --resource-group $resourceGroup --name ${vm_name} --image UbuntuLTS --admin-username $USER --admin-password $3 --size Standard_D2_v2 --tags "restart-tag" 
+az vm create --verbose --resource-group $resourceGroup --name ${vm_name} --image ${vm_image} --admin-username $USER --admin-password $3 --size Standard_D2_v2 --tags "restart-tag" 
 
 source wait-for-vm.sh
 echo ${vm_name} started
