@@ -7,7 +7,8 @@ if [ -z "$4" ]; then export vm_init_settings="./create-vm-simple.json" ; else ex
 source create-resource-group.sh
 
 export vm_name=${USER}-$2
-export vm_image=UbuntuLTS
+# export vm_image=UbuntuLTS
+export vm_image=Canonical:UbuntuServer:18.04-LTS:18.04.201806130
 
 echo Creating machineName ${vm_name} 
 echo in resourceGroup ${resourceGroup}
