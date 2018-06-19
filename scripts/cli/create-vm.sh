@@ -20,8 +20,7 @@ export vm_name=${USER}-$2
 # export vm_image=UbuntuLTS
 export vm_image=Canonical:UbuntuServer:18.04-LTS:18.04.201806130
 
-echo ================ Creating machineName ${vm_name} 
-echo in resourceGroup ${resourceGroup}
+echo ================ ${vm_name} creating in resourceGroup ${resourceGroup} ===================
 echo With password $3
 
 echo
@@ -49,15 +48,15 @@ echo ================ ${vm_name} shutdown added
 #---------------------------------------------------#
 
 echo
-echo ============ Run extensions to set up VM ${vm_name}
+echo ================ ${vm_name} - Run extensions to set up VM 
 
 echo Run extension upgrade-os to set up VM ${vm_name}
 az vm extension set --resource-group $resourceGroup --vm-name ${vm_name} --name CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --protected-settings "../extensions/upgrade-os.json"
 
 for i in "${@:4}"
-do
+dols
 	export vm_extension_manifest="../extensions/${i}.json"
-	echo Run extension ${1} to set up VM ${vm_name} ($vm_extension_manifest)
+	echo  ====== ${vm_name} run extension ${1} to set up VM using file: ${vm_extension_manifest}
 	az vm extension set --resource-group $resourceGroup --vm-name ${vm_name} --name CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --protected-settings $vm_extension_manifest
 done
 
