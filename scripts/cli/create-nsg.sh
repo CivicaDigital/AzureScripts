@@ -18,6 +18,7 @@ source create-resource-group.sh
 #---------------------------------------------------#
 
 nsgName=${2}NSG
+echo ================ ${nsgName} - Create NSG: $nsgName
 az network nsg create --resource-group $resourceGroup --location $region --name $nsgName
 
 
@@ -25,7 +26,7 @@ az network nsg create --resource-group $resourceGroup --location $region --name 
 # Step 4 - Add Ports to NSG.
 #---------------------------------------------------#
 echo
-echo ================ ${nsgName} - Open Ports on VM 
+echo ================ ${nsgName} - Open Ports on NSG 
 
 priority=900
 variable=${3}
