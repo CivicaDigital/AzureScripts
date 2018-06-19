@@ -34,8 +34,8 @@ for i in $(echo $variable | sed "s/,/ /g")
 do
     # call your procedure/other scripts here below    
 	echo  ====== ${nsgName} Opening port on $i
+	az network nsg rule create --resource-group $resourceGroup --nsg-name $nsgName --name Open-Port-${i} --protocol tcp --priority $priority --destination-port-range $i
 	priority=$((priority + 1))
-	az network nsg rule create --resource-group $resourceGroup --nsg-name $nsgName --name $2 --protocol tcp --priority $priority --destination-port-range $i
 
 done
 
