@@ -1,4 +1,6 @@
 #!/bin/sh
+mkdir -p /usr/civica
+touch /usr/civica/cloud-init.txt
 
 # Scripts from:
 # http://c-nergy.be/blog/?p=12198
