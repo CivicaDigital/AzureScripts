@@ -14,7 +14,15 @@ source variables.sh $1
 source create-resource-group.sh
 
 #---------------------------------------------------#
-# Step 3 - Create Network Security Groups
+# Step 3 - Create a Network Security Group
+#---------------------------------------------------#
+
+nsgName=${2}NSG
+az network nsg create --resource-group $resourceGroup --location $region --name $nsgName
+
+
+#---------------------------------------------------#
+# Step 4 - Add Ports to NSG.
 #---------------------------------------------------#
 echo
 echo ================ ${nsgName} - Open Ports on VM 
@@ -26,7 +34,7 @@ do
     # call your procedure/other scripts here below    
 	echo  ====== ${nsgName} Opening port on $i
 	priority=$((priority + 1))
-	az network nsg rule create --resource-group $resourceGroup --nsg-name ${2}NSG --name $2 --protocol tcp --priority $portNum --destination-port-range $i
+	az network nsg rule create --resource-group $resourceGroup --nsg-name $nsgName --name $2 --protocol tcp --priority $priority --destination-port-range $i
 
 done
 
