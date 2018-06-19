@@ -1,6 +1,7 @@
 #!/bin/sh
 mkdir -p /usr/civica
 touch /usr/civica/cloud-init.txt
+echo $(date) ":RAN setup-azure-cli.sh" >> /usr/civica/cloud-init.txt
 
 echo $(date) ":Initialised from Azure Cloud CLI" >> /usr/civica/cloud-init.txt
 

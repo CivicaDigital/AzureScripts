@@ -1,6 +1,7 @@
 #!/bin/sh
 mkdir -p /usr/civica
 touch /usr/civica/cloud-init.txt
+echo $(date) ":RAN upgrade-os.sh" >> /usr/civica/cloud-init.txt
 
 # Apt-get options: https://linux.die.net/man/8/apt-get
 
