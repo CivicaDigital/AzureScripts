@@ -7,7 +7,7 @@ source variables.sh
 #---------------------------------------------------#
 # Step 2 - Create a VM with the desktop scripts 
 #---------------------------------------------------#
-./create-vm.sh $1 $2 $3 create-vm-desktop
+./create-vm.sh $1 $2 $3 setup-xrdp
 
 #---------------------------------------------------#
 # Step 3 - Open a port for RDP 

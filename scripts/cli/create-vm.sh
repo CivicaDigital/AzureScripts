@@ -50,14 +50,29 @@ echo ================ ${vm_name} shutdown added
 echo
 echo ================ ${vm_name} - Run extensions to set up VM 
 
-echo Run extension upgrade-os to set up VM ${vm_name}
-az vm extension set --resource-group $resourceGroup --vm-name ${vm_name} --name CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --protected-settings "../extensions/upgrade-os.json"
-
-for i in "${@:4}"
-dols
+variable=upgrade-os,${4}
+for i in $(echo $variable | sed "s/,/ /g")
+do
 	export vm_extension_manifest="../extensions/${i}.json"
 	echo  ====== ${vm_name} run extension ${1} to set up VM using file: ${vm_extension_manifest}
 	az vm extension set --resource-group $resourceGroup --vm-name ${vm_name} --name CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --protected-settings $vm_extension_manifest
 done
+
+
+#---------------------------------------------------#
+# Step 6 - Open Ports 
+#---------------------------------------------------#
+echo
+echo ================ ${vm_name} - Open Ports on VM 
+
+
+variable=${5}
+for i in $(echo $variable | sed "s/,/ /g")
+do
+    # call your procedure/other scripts here below
+	echo  ====== ${vm_name} Opening port on $i
+    az vm open-port --resource-group $resourceGroup --name ${vm_name} --port $i
+done
+
 
 echo ================ ${vm_name} started and set up.
