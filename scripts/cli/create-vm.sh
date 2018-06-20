@@ -55,27 +55,24 @@ for i in $(echo $variable | sed "s/,/ /g")
 do
 	export vm_extension_manifest="../extensions/${i}.json"
 	echo  ====== ${vm_name} run extension ${i} to set up VM using file: ${vm_extension_manifest}
-	az vm extension set --resource-group $resourceGroup --vm-name ${vm_name} --name CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --protected-settings $vm_extension_manifest
+	az vm extension set --output table --resource-group $resourceGroup --vm-name ${vm_name} --name CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --protected-settings $vm_extension_manifest
 done
 
 
 #---------------------------------------------------#
 # Step 6 - Open Ports via Network Security Groups
 #---------------------------------------------------#
-echo
-echo ================ ${vm_name} - Assign VM to Security Groups
+if [ ! -z "$5" ]; then 
 
-variable=${5}
-for i in $(echo $variable | sed "s/,/ /g")
-do
-    # call your procedure/other scripts here below
-	echo  ====== ${vm_name} Opening port on $i
-#    az vm open-port --resource-group $resourceGroup --name ${vm_name} --port $i
+	# Only a single security group can be used.
+	nsg=${5}
 
-	# As standard all VMs have a NIC, it is called ${vm_name}VMNic, so add rule to that NIC.
-	az network nic update --resource-group $resourceGroup --name ${vm_name}VMNic --network-security-group $i
+	echo
+	echo ================ ${vm_name} - Assign VM to Security Groups
+	echo  ====== ${vm_name} Assigning $nsg
+	
+	az network nic update --resource-group $resourceGroup --name ${vm_name}VMNic --network-security-group $nsg
 
-done
-
+fi
 
 echo ================ ${vm_name} started and set up.
