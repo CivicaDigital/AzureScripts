@@ -22,44 +22,74 @@ chmod +x *.sh
 ```
 Running `ll` will allow you to confirm that all the scripts are runnable.
 
+## Allowing connectionout from VMs
+While it is possible to have access on a specific port assigned to a VM it is more appropriate to use [Network Security Groups](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-create-nsg-arm-cli).
+Therefore a set of appropriate security groupos should be created first.
+This is done by running this command:
+```
+./create-nsg.sh [project] [nsg-name] [port-csv]
+```
+
+* This will create a resource group `[project]resourceGroup`.
+* This will create a NSG called `[nsg-name]NSG' within the resource group `[project]resourceGroup`.
+* Where port-csv:=port(,port-csv)
+* With the following ports open `port-csv`.
+
+> **NOTE** 
+> If you don't include port `22` you will not be able to SSH to the server.
+> If you don't include port `3389` you will not be able to RDP to the server.
+
+eg.
+```
+./create-nsg.sh myProj desktop  8080,22,3389
+```
+Will create a group called `desktopNSG` with ports 8080, 22 & 3389 avalilable.
+
 ## Creating a Standard Linux VM
 To create a VM simply run the following:
 ```
-./create-vm.sh [project] [vm-name] [vm-password]
+./create-vm.sh [project] [vm-name] [vm-password] [vm-scripts] [nsg-name]
 ```
 
-* This will create a VM within a resource group `[project]resourceGroup`.
-* The VM created will not be the value of the parameter [vm-name], but `user-[vm-name]`. (eg for user fred and [vm-name]=foobar then the VM will be 'fred-foobar').
+* This will create a resource group `[project]resourceGroup`.
+* This will create a VM called `[user]-[vm-name]` within a resource group `[project]resourceGroup`. (eg for user fred and [vm-name]=foobar then the VM will be 'fred-foobar').
 * The VM needs a password (sooner than SSH keys) this password will be `[vm-password]'.
+* The [vm-scripts] is a CSV list of scripts located in the [extensions](../extensions) folder. At a minimum this should include 'upgrade-os' as this will ensure the VM has an updated OS.
+* The [nsg-name] is one of the Network Security Groups created previously. This is optional if only port 22 is required.
 
 Running the script will probably take 5-10 minutes.
-Whe created the VM will be created and will have the following properties:
+When created the VM will be created and will have the following properties:
 * The OS will have been updated from the standard image `UbuntuLTS`;
 * The VM will be on a `Standard_D2_v2`;
 * The VM will have the tag `restart-tag`;
-* The file `/tmp/cloud-init.txt` can be examined to see which extensions have been executed; 
-Note: This process can be checked by running:
-`az vm run-command invoke -g [project]ResourceGroup -n user-[vm-name] --command-id RunShellScript --scripts "more /tmp/cloud-init.txt"`
-Which will return the data in the file, thus enablng you to check the VM state.
 * The VM will have an auto shutdown enabled at 18:30 UTC.
+* The VM will be attached to the NSG [nsg-name] and have all the associated ports open;
+
+While running the extensions the VM will write to a file `/usr/civica/cloud-init.txt` can be examined to see which extensions have been executed; 
+Note: This process can be checked by running:
+```
+az vm run-command invoke -g [project]ResourceGroup -n user-[vm-name] --command-id RunShellScript --scripts "more /usr/civica/cloud-init.txt"
+```
+Which will return the data in the file, thus enablng you to check the VM state.
 
 ## Creating a Linux VM with Azure CLI
 To instantiate a VM with just the Azure CLI installed run the following command:
 ```
-./create-vm.sh [project] [vm-name] [vm-password] create-vm-az
+./create-vm.sh [project] [vm-name] [vm-password] setup-azure-cli
 ```
 
-This is the same as a standard VM but the **create-vm-az** parameter is essential.
-This means that the scripts located in the `create-vm-az.json` file will be executed on the VM as it is created.
+This is the same as a standard VM but the **setup-azure-cli** parameter is essential.
+This means that the scripts located in the `setup-azure-cli.json` file will be executed on the VM as it is created.
 
 ## Creating a Linux VM with a Desktop
 To instantiate a VM with just the Azure CLI installed run the following command:
 ```
-./create-vm-desk.sh [project] [vm-name] [vm-password]
+./create-nsg.sh [project] desktop  22,3389
+./create-vm.sh [project] [vm-name] [vm-password] setup-xrdp desktopNSG
 ```
 
-This is the same as a Linux VM with Azure CLi as the scripts located in the `create-vm-desktop.json` file are executed on the VM as it is created.
-This script will attach the new VM to `3389` for conneting to the machine via RDP.
+This is the same as a Linux VM with Azure CLi as the scripts located in the `setup-xrdp.json` file are executed on the VM as it is created.
+This script will attach the new VM to `3389` for connecting to the machine via RDP.
 
 
 
