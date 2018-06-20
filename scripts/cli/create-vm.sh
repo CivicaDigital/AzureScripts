@@ -71,7 +71,9 @@ do
     # call your procedure/other scripts here below
 	echo  ====== ${vm_name} Opening port on $i
 #    az vm open-port --resource-group $resourceGroup --name ${vm_name} --port $i
-	az network nic update --resource-group $resourceGroup --name ${vm_name}Nic --network-security-group $i
+
+	# As standard all VMs have a NIC, it is called ${vm_name}VMNic, so add rule to that NIC.
+	az network nic update --resource-group $resourceGroup --name ${vm_name}VMNic --network-security-group $i
 
 done
 
