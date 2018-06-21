@@ -105,6 +105,15 @@ To instantiate a VM with just the Azure CLI installed run the following command:
 This is the same as a Linux VM with Azure CLi as the scripts located in the `setup-xrdp.json` file are executed on the VM as it is created.
 This script will attach the new VM to `3389` for connecting to the machine via RDP.
 
+## Creating a Linux VM for Java development
+To instantiate a VM as above but with all the Java tooling:
+```
+./create-nsg.sh [project] desktop  22,3389
+./create-vm.sh [project] [vm-name] [vm-password] setup-xrdp,devtools-java desktopNSG
+```
+
+This is the same as a Linux VM with Azure CLi as the scripts located in the `setup-xrdp.json` file are executed on the VM as it is created.
+This script will attach the new VM to `3389` for connecting to the machine via RDP.
 
 
 
