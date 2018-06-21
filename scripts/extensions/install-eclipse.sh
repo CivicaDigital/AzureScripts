@@ -1,4 +1,6 @@
 #!/bin/sh
+mkdir -p /usr/civica
+touch /usr/civica/cloud-init.txt
 
 # Install java 8
 echo $(date) ":Installing Eclipse STS" >> /usr/civica/cloud-init.txt

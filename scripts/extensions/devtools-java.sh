@@ -1,4 +1,6 @@
 #!/bin/sh
+mkdir -p /usr/civica
+touch /usr/civica/cloud-init.txt
 
 source install-java8.sh
 source install-git.sh

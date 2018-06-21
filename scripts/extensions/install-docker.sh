@@ -1,4 +1,6 @@
 #!/bin/sh
+mkdir -p /usr/civica
+touch /usr/civica/cloud-init.txt
 
 # Install Docker - https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository
 echo $(date) ":Installing Docker" >> /usr/civica/cloud-init.txt
