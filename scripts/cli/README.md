@@ -1,14 +1,25 @@
 # Client Scripts
 ## Overview
-The scripts are all executable from the Azure Cloud CLI.
+The scripts are all executable from the [Azure Cloud Shell](https://azure.microsoft.com/en-gb/features/cloud-shell/).
+This project is a set of BASH scripts which run, troubleshoot and automate your most common management tasks.
+The intent is to provide a common and easy method of provisioning Azure VMs.
+
+### How does Azure Clous Shell Work
+Azure Cloud Shell provides secure terminal access to a Linux Virtual Machine without the need to install and maintain a machine yourself. Azure Cloud Shell provisions machines on a per-request basis. It means that when you open your Cloud Shell, a Virtual Machine will be deployed automatically. Cloud Shell automatically terminates after 20 minutes of shell inactivity. That’s the reason why you must have an Azure storage account to store your files in an Azure file share. Cloud Shell will automatically attach a 5-GB disk image that stores your $Home directory contents for the future session.
+Let’s see how it works. First, log in to the Azure Portal https://portal.azure.com and click on the Cloud Shell icon.
+![Location of CLI](http://www.unicloud.com.au/wp-content/uploads/2018/03/Snip20180321_9.png)
+Which will lead you to the following screen:
+![Azure CLI](https://i1.wp.com/buildazure.com/wp-content/uploads/2018/02/Azure-Cloud-Shell-site-Bash.png?fit=654%2C395&ssl=1)
+> [Azure Cloud Cli Primer](https://www.unicloud.com.au/blog/azure-cli-primer-azure-cloud-shell/)
 ## Getting the scripts
-In the users home directory run:
+Once you have logged in you can fetch the scripts using GIT.
+So in the users home directory run:
 ```
 git clone https://github.com/CivicaDigital/AzureScripts.git
 ```
-This places the files into `~AzureScripts` folder.
+This places the files into `~/AzureScripts` folder.
 ## Accessing the Scripts
-After cloning change to the scripst directory.
+After cloning change to the AzureScripts directory.
 ```
 cd AzureScripts/scripts/cli/
 ```
