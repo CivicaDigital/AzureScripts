@@ -1,9 +1,9 @@
 #!/bin/sh
-mkdir -p /usr/civica
-touch /usr/civica/cloud-init.txt
+sudo mkdir -p /usr/civica
+sudo touch /usr/civica/cloud-init.txt
 
 # Install Docker - https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository
-echo $(date) ":Installing Docker" >> /usr/civica/cloud-init.txt
+sudo echo $(date) ":Installing Docker" >> /usr/civica/cloud-init.txt
 
 ## Update the apt package index:
 sudo apt-get update
@@ -28,6 +28,6 @@ sudo apt-get install docker-ce -y
 
 dockVer=$(docker -v)
 
-echo $(date) ":Installed Docker ${dockVer}" >> /usr/civica/cloud-init.txt
+sudo echo $(date) ":Installed Docker ${dockVer}" >> /usr/civica/cloud-init.txt
 
 

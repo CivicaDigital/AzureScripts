@@ -1,9 +1,9 @@
 #!/bin/sh
-mkdir -p /usr/civica
-touch /usr/civica/cloud-init.txt
+sudo mkdir -p /usr/civica
+sudo touch /usr/civica/cloud-init.txt
 
 # Install java 8
-echo $(date) ":Installing Postman" >> /usr/civica/cloud-init.txt
+sudo echo $(date) ":Installing Postman" >> /usr/civica/cloud-init.txt
 
 cd ~
 # Install this package to get required libraries
@@ -14,5 +14,4 @@ rm postman.tar.gz
 sudo ln -s /opt/Postman/Postman /usr/bin/postman
 sudo mv /tmp/postman.desktop /usr/share/applications
 
-
-echo $(date) ":Installed Postman" >> /usr/civica/cloud-init.txt
+sudo echo $(date) ":Installed Postman" >> /usr/civica/cloud-init.txt

@@ -1,31 +1,31 @@
 #!/bin/sh
-mkdir -p /usr/civica
-touch /usr/civica/cloud-init.txt
-echo $(date) ":RAN setup-xrdp.sh" >> /usr/civica/cloud-init.txt
+sudo mkdir -p /usr/civica
+sudo touch /usr/civica/cloud-init.txt
+sudo echo $(date) ":RAN setup-xrdp.sh" >> /usr/civica/cloud-init.txt
 
 # Scripts from:
 # http://c-nergy.be/blog/?p=12198
 
-echo $(date) ":DESKTOP Install" >> /usr/civica/cloud-init.txt
+sudo echo $(date) ":DESKTOP Install" >> /usr/civica/cloud-init.txt
 
 #---------------------------------------------------#
 # Step 1 - Install xRDP Software.... 
 #---------------------------------------------------#
-echo $(date) ":xrdp installing..." >> /usr/civica/cloud-init.txt
+sudo echo $(date) ":xrdp installing..." >> /usr/civica/cloud-init.txt
 sudo apt-get --assume-yes install xrdp
-echo $(date) ":xrdp installed" >> /usr/civica/cloud-init.txt
+sudo echo $(date) ":xrdp installed" >> /usr/civica/cloud-init.txt
 
 #---------------------------------------------------#
 # Step 2 - Install xfce4 Software.... 
 #---------------------------------------------------#
-echo $(date) ":xfce4 installing..." >> /usr/civica/cloud-init.txt
+sudo echo $(date) ":xfce4 installing..." >> /usr/civica/cloud-init.txt
 sudo apt-get --assume-yes install xfce4
-echo $(date) ":xfce4 installed" >> /usr/civica/cloud-init.txt
+sudo echo $(date) ":xfce4 installed" >> /usr/civica/cloud-init.txt
 
 #---------------------------------------------------#
 # Step 3 - create policies exceptions .... 
 #---------------------------------------------------#
-echo $(date) ":Creating Polkit File..." >> /usr/civica/cloud-init.txt
+sudo echo $(date) ":Creating Polkit File..." >> /usr/civica/cloud-init.txt
 
 sudo bash -c "cat >/etc/polkit-1/localauthority/50-local.d/45-allow.colord.pkla" <<EOF
 [Allow Colord all Users]
@@ -36,7 +36,7 @@ ResultInactive=no
 ResultActive=yes
 EOF
 
-echo $(date) ":Polkit file installed" >> /usr/civica/cloud-init.txt
+sudo echo $(date) ":Polkit file installed" >> /usr/civica/cloud-init.txt
 
-echo $(date) ":DESKTOP Installed" >> /usr/civica/cloud-init.txt
+sudo echo $(date) ":DESKTOP Installed" >> /usr/civica/cloud-init.txt
 
