@@ -1,13 +1,12 @@
 #!/bin/sh
 
 # Install desktop files
-cp *.desktop /tmp
-
+cp *.desktop /usr/share/applications
 mkdir ~/Desktop
-cp *.desktop ~/Desktop
-
-mkdir -p /usr/civica/scripts
+sudo cp *.desktop ~/Desktop
+sudo chmod +x ~/Desktop/*.desktop
 cp *.desktop /usr/civica/scripts
+
 
 cp *.sh /usr/civica/scripts
 
