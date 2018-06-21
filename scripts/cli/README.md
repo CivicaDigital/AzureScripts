@@ -3,8 +3,11 @@
 The scripts are all executable from the [Azure Cloud Shell](https://azure.microsoft.com/en-gb/features/cloud-shell/).
 This project is a set of BASH scripts which run, troubleshoot and automate your most common management tasks.
 The intent is to provide a common and easy method of provisioning Azure VMs.
+### Why use Azure Cloud Shell
+It would be posible to use [Packer](https://www.packer.io/) or [Terraform](https://www.terraform.io/) to create the environments for the development but at the time of writing this is only possible from a machine with network access.
+Therfore the [Azure Cloud Shell](https://azure.microsoft.com/en-gb/features/cloud-shell/) is used due to the convinience.
 
-### How does Azure Clous Shell Work
+### How does Azure Cloud Shell Work
 Azure Cloud Shell provides secure terminal access to a Linux Virtual Machine without the need to install and maintain a machine yourself. Azure Cloud Shell provisions machines on a per-request basis. It means that when you open your Cloud Shell, a Virtual Machine will be deployed automatically. Cloud Shell automatically terminates after 20 minutes of shell inactivity. That’s the reason why you must have an Azure storage account to store your files in an Azure file share. Cloud Shell will automatically attach a 5-GB disk image that stores your $Home directory contents for the future session.
 Let’s see how it works. First, log in to the Azure Portal https://portal.azure.com and click on the Cloud Shell icon.
 ![Location of CLI](http://www.unicloud.com.au/wp-content/uploads/2018/03/Snip20180321_9.png)

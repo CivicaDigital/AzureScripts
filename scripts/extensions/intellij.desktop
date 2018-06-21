@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=IntelliJ IDEA
+Comment=IntelliJ IDEA
+Icon=/opt/idea-IC-173.4548.28/bin/idea.png
+Exec=/opt/idea-IC-173.4548.28/bin/idea.sh
+Terminal=false
+Categories=Tags;Programming;Application

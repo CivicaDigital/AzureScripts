@@ -1,0 +1,23 @@
+{
+	"fileUris": 
+		[
+		 "https://raw.githubusercontent.com/CivicaDigital/AzureScripts/master/scripts/extensions/upgrade-os.sh"
+		 ,"https://raw.githubusercontent.com/CivicaDigital/AzureScripts/master/scripts/extensions/setup-azure-cli.sh"
+		 ,"https://raw.githubusercontent.com/CivicaDigital/AzureScripts/master/scripts/extensions/setup-xrdp.sh"
+		 
+		 ,"https://raw.githubusercontent.com/CivicaDigital/AzureScripts/master/scripts/extensions/devtools-java.sh"
+		 ,"https://raw.githubusercontent.com/CivicaDigital/AzureScripts/master/scripts/extensions/install-java8.sh"
+		 ,"https://raw.githubusercontent.com/CivicaDigital/AzureScripts/master/scripts/extensions/install-git.sh"
+		 ,"https://raw.githubusercontent.com/CivicaDigital/AzureScripts/master/scripts/extensions/install-mvn.sh"
+		 ,"https://raw.githubusercontent.com/CivicaDigital/AzureScripts/master/scripts/extensions/install-intellij.sh"
+		 ,"https://raw.githubusercontent.com/CivicaDigital/AzureScripts/master/scripts/extensions/install-postman.sh"
+		 ,"https://raw.githubusercontent.com/CivicaDigital/AzureScripts/master/scripts/extensions/install-docker.sh"
+
+		 ,"https://raw.githubusercontent.com/CivicaDigital/AzureScripts/master/scripts/extensions/postman.desktop"
+		 ,"https://raw.githubusercontent.com/CivicaDigital/AzureScripts/master/scripts/extensions/intelij.desktop"
+		 ,"https://raw.githubusercontent.com/CivicaDigital/AzureScripts/master/scripts/extensions/spring.desktop"
+		 ,"https://raw.githubusercontent.com/CivicaDigital/AzureScripts/master/scripts/extensions/install-desktop-icons.sh"
+
+		],
+	"commandToExecute": "./upgrade-os.sh && ./setup-azure-cli.sh && ./setup-xrdp.sh && ./devtools-java.sh"
+}
